@@ -2,7 +2,7 @@ package jaci.openrio.module.unidrive;
 
 import jaci.openrio.module.unidrive.drive.DriveManager;
 import jaci.openrio.module.unidrive.drive.ManagerRegistry;
-import jaci.openrio.toast.lib.module.ToastModule;
+import jaci.openrio.toast.core.loader.annotation.Branch;
 import jaci.openrio.toast.lib.module.ToastStateModule;
 import jaci.openrio.toast.lib.state.RobotState;
 
@@ -12,6 +12,7 @@ import jaci.openrio.toast.lib.state.RobotState;
  *
  * @author Jaci
  */
+@Branch(branch = "jaci.openrio.module.unidrive.addon.ToastDroidHandler", dependency = "ToastDroid", method = "toast_droid")
 public class UniversalDrive extends ToastStateModule {
 
     static DriveManager manager;
