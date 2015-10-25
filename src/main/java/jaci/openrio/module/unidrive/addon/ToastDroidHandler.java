@@ -36,7 +36,7 @@ public class ToastDroidHandler {
     private static String motor_ids() {
         String[] str = new String[UDPreference.MOTOR_COUNT];
         for (int i = 0; i < str.length; i++) {
-            str[i] = String.valueOf(UDPreference.MOTOR_IDS.get(i));
+            str[i] = String.valueOf(UDPreference.MOTOR_IDS[i]);
         }
         return String.join(", ", str);
     }

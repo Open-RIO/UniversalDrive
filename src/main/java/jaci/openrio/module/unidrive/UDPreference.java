@@ -2,7 +2,7 @@ package jaci.openrio.module.unidrive;
 
 import edu.wpi.first.wpilibj.*;
 import jaci.openrio.toast.core.Toast;
-import jaci.openrio.toast.core.loader.groovy.GroovyPreferences;
+import jaci.openrio.toast.lib.module.ModuleConfig;
 
 import java.util.ArrayList;
 
@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class UDPreference {
 
-    static GroovyPreferences pref;
+    static ModuleConfig pref;
     public static String DRIVE_TYPE;
     public static String MOTOR_INTERFACE;
     public static String MOTOR_TYPE;
     public static int MOTOR_COUNT;
-    public static ArrayList<Integer> MOTOR_IDS;
+    public static Integer[] MOTOR_IDS;
     public static SpeedController[] controllers;
     public static int JOYSTICK_PORT;
     public static String JOYSTICK_LAYOUT;
@@ -27,12 +27,12 @@ public class UDPreference {
     public static boolean valid = true;
 
     public static void load() {
-        pref = new GroovyPreferences("UniversalDrive");
-        DRIVE_TYPE = pref.getString("drive.type", "TANK", "The type of Drive to use. Possible options are: [TANK, MECANUM]");
-        MOTOR_INTERFACE = pref.getString("drive.interface", "PWM", "The interface to use for the Motor Controllers. Possible values are: [PWM, CAN]");
-        MOTOR_TYPE = pref.getString("drive.motor", "Talon", "The type of motor controller to use. Possible values are: [Talon, Jaguar, Victor, Victor SP]");
-        MOTOR_IDS = (ArrayList<Integer>) pref.getObject("drive.ports", new Integer[] {0, 1}, "The motor ports to use. This is the PWM/CAN interface ID the motor controller is attached to.", "Pattern: [left, right] OR [front left, back left, front right, back right]");
-        MOTOR_COUNT = MOTOR_IDS.size();
+        pref = new ModuleConfig("UniversalDrive");
+        DRIVE_TYPE = pref.getString("drive.type", "TANK");
+        MOTOR_INTERFACE = pref.getString("drive.interface", "PWM");
+        MOTOR_TYPE = pref.getString("drive.motor", "Talon");
+        MOTOR_IDS = (Integer[]) pref.getArray("drive.ports", new Integer[] {0, 1});
+        MOTOR_COUNT = MOTOR_IDS.length;
 
         try {
             switch (MOTOR_INTERFACE.toLowerCase()) {
@@ -74,10 +74,8 @@ public class UDPreference {
             Toast.log().exception(e);
         }
 
-        JOYSTICK_PORT = pref.getInt("joy.port", 0, "Get the JoyStick port to use for the Drive");
-        JOYSTICK_LAYOUT = pref.getString("joy.layout", "XBOX_STICK", "Defines the Control Layout of the Joystick. This is different per Drive Type.",
-                "TANK: XBOX_STICK (analog L/R stick drive)",
-                "MECANUM: XBOX_STICK (L analog stick for X/Y, R analog stick for rotation)");
+        JOYSTICK_PORT = pref.getInt("joy.port", 0);
+        JOYSTICK_LAYOUT = pref.getString("joy.layout", "XBOX_STICK");
         joystick = new Joystick(JOYSTICK_PORT);
     }
 
@@ -87,7 +85,7 @@ public class UDPreference {
         controllers = new SpeedController[MOTOR_COUNT];
         for (int i = 0; i < controllers.length; i++) {
             try {
-                controllers[i] = type.getDeclaredConstructor(int.class).newInstance(MOTOR_IDS.get(i));
+                controllers[i] = type.getDeclaredConstructor(int.class).newInstance(MOTOR_IDS[i]);
             } catch (Exception e) {
                 Toast.log().exception(e);
             }
