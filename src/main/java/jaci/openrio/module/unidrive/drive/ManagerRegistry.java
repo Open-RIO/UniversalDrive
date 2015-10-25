@@ -15,6 +15,7 @@ public class ManagerRegistry {
     public static void init() {
         register(new DriveMecanum());
         register(new DriveTank());
+        register(new DriveArcade());
     }
 
     /**
