@@ -24,7 +24,7 @@ public class UniversalDrive extends ToastStateModule {
 
     @Override
     public String getModuleVersion() {
-        return "1.0.0";
+        return "1.1.0";
     }
 
     @Override
