@@ -21,7 +21,7 @@ public class DriveArcade implements DriveManager {
     public void tick() {
         Joystick joy = UDPreference.joystick;
         if (UDPreference.JOYSTICK_LAYOUT.toLowerCase().equals("xbox_stick")) {
-            UDPreference.drive.arcadeDrive(joy);
+            UDPreference.drive.arcadeDrive(joy, UDPreference.DRIVE_SQUAREDINPUTS);
         }
     }
 }

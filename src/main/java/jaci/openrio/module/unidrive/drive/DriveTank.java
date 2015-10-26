@@ -23,7 +23,7 @@ public class DriveTank implements DriveManager {
     public void tick() {
         Joystick joy = UDPreference.joystick;
         if (UDPreference.JOYSTICK_LAYOUT.toLowerCase().equals("xbox_stick")) {
-            UDPreference.drive.tankDrive(joy.getY(GenericHID.Hand.kLeft), joy.getY(GenericHID.Hand.kRight));
+            UDPreference.drive.tankDrive(joy.getY(GenericHID.Hand.kLeft), joy.getY(GenericHID.Hand.kRight), UDPreference.DRIVE_SQUAREDINPUTS);
         }
     }
 }
