@@ -15,6 +15,7 @@ public class UDPreference {
 
     static ModuleConfig pref;
     public static String DRIVE_TYPE;
+    public static boolean DRIVE_SQUAREDINPUTS;
     public static String MOTOR_INTERFACE;
     public static String MOTOR_TYPE;
     public static int MOTOR_COUNT;
@@ -29,6 +30,7 @@ public class UDPreference {
     public static void load() {
         pref = new ModuleConfig("UniversalDrive");
         DRIVE_TYPE = pref.getString("drive.type", "TANK");
+        DRIVE_SQUAREDINPUTS = pref.getBoolean("drive.squaredinputs", false);
         MOTOR_INTERFACE = pref.getString("drive.interface", "PWM");
         MOTOR_TYPE = pref.getString("drive.motor", "Talon");
         MOTOR_IDS = (Integer[]) pref.getArray("drive.ports", new Integer[] {0, 1});

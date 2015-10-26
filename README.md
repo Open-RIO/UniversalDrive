@@ -7,6 +7,9 @@ Universal Drive is a Toast Module that acts as a framework for the RobotDrive in
 // The type of Drive to use. Possible options are: [TANK, MECANUM, ARCADE]
 drive.type = "MECANUM"
 
+// Whether or not to use squared inputs on tank and arcade drive
+drive.squaredinputs = false
+
 // The interface to use for the Motor Controllers. Possible values are: [PWM, CAN]
 drive.interface = "PWM"
 
