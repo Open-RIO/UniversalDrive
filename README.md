@@ -13,7 +13,6 @@ Universal Drive is a Toast Module that acts as a framework for the RobotDrive in
 		"motor":"Talon",
 		"type":"TANK",
 		"ports":[0,1],
-		"interface":"PWM",
 		"squaredinputs":false
 	}
 }
@@ -25,10 +24,9 @@ Name | Description
 `layout` | Defines the Control Layout of the Joystick. This is different per Drive Type. <br> `TANK`: `XBOX_STICK` (analog L/R stick drive) <br> `MECANUM`: `XBOX_STICK` (L analog stick for X/Y, R analog stick for rotation) <br> `ARCADE`: `XBOX_STICK` (analog L stick drive)
 `port` | Get the JoyStick port to use for the Drive
 **`drive`** | **Drive settings**
-`motor` | The type of motor controller to use. Possible values are: `"Talon"`, `"Jaguar"`, `"Victor"`, `"Victor SP"`
+`motor` | The type of motor controller to use. Possible values are: `"Talon"`, `"TalonSRX"`, `"CANTalon"`, `"Jaguar"`, `"CANJaguar"`, `"Victor"`, `"VictorSP"`
 `type` | The type of Drive to use. Possible options are: `"TANK"`, `"MECANUM"`, `"ARCADE"`
 `ports` | The motor ports to use. This is the PWM/CAN interface ID the motor controller is attached to. <br> Pattern: `[left, right]` or `[front left, back left, front right, back right]`
-`interface` | The interface to use for the Motor Controllers. Possible values are: `"PWM"` or `"CAN"`
 `squaredinputs` | Whether or not to use squared inputs on tank and arcade drive. Possible values are: `true` or `false`
 
 
